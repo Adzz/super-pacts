@@ -16,7 +16,17 @@ if (!secrets || !secrets.accountID || !secrets.accessToken) {
   process.exit();
 }
 
-app.engine("handlebars", handlebars());
+const exphbs = handlebars.create({
+  helpers: {
+    daysRemaining: (date) => { 
+      return 1;
+      // TODO: implement days remaining checker
+      //
+    }
+  }
+});
+
+app.engine("handlebars", exphbs.engine);
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 app.use(bodyParser.json());
