@@ -3,6 +3,8 @@
 const express = require("express");
 const handlebars = require("express-handlebars");
 const request = require('request')
+const createFirebaseClient = require('./lib/firebaseWrapper');
+const firebaseClient = new createFirebaseClient();
 
 const app = express();
 
