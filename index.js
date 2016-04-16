@@ -12,8 +12,8 @@ const app = express();
 app.engine("handlebars", handlebars());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get("/", (req, res)=>{
   res.render("index");
@@ -38,14 +38,15 @@ app.get("/fails", (req, res) => {
     res.json(JSON.parse(body)); });
 });
 
+app.post('/makepledge', (req, res) => {
+  firebaseClient.createPledge(req.body);
+  res.redirect('/');
+});
+
 app.post('/mondofeed', (req, res) => {
-  console.log(req.body.data);
-  const transactionId = req.body.data.id;
-  res.send(200);
+  const notes = req.body.data.notes;
+  firebaseClient.registerPaid(notes);
+  res.sendStatus(200);
 });
 
 app.listen(8080);
-
-function cleanMondoResponse (payload) {
-}
-
