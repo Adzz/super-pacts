@@ -14,6 +14,7 @@ app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + "/assets"));
 
 app.get("/", (req, res)=>{
   res.render("index");

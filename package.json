@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "sass": "./node_modules/gulp/bin/gulp.js sass"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,9 @@
     "express-handlebars": "^3.0.0",
     "request": "^2.71.0",
     "body-parser": "^1.15.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0"
   }
 }
