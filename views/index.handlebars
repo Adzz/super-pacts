@@ -29,6 +29,13 @@
   </section>
 
 
+  <section class='pledge-feed'>
+    {{#each pledges}}
+    <div>
+      <p>{{codewars_username}} has pledged {{amount}} to {{benefactor}}</p>
+    </div>
+    {{/each}}
+  </section>
 
   </body>
 </html>
