@@ -2,6 +2,8 @@
 
 const gulp = require("gulp");
 const sass = require("gulp-sass");
+const nodemon = require("gulp-nodemon");
+const watch = require("gulp-watch");
 
 gulp.task('sass', () => {
   return gulp.src('./assets/sass/main.scss')
@@ -9,6 +11,9 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('./assets/css'));
 });
 
-gulp.task('sass:watch', function () {
-  gulp.watch('./assets/sass/main.scss', ['sass']);
+gulp.task('dev', () => {
+  gulp.watch('./assets/sass/*.scss', ['sass']);
+  nodemon({
+    script: 'index.js'
+  })
 });

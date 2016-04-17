@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start"    : "node index.js",
-    "sass"     : "./node_modules/gulp/bin/gulp.js sass",
-    "sasswatch": "./node_modules/gulp/bin/gulp.js sass:watch",
-    "start-dev": "nodemon -d index.js"
+    "start": "node index.js",
+    "start-dev": "nodemon -d index.js",
+    "dev": "./node_modules/gulp/bin/gulp.js dev"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +19,8 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^2.2.0"
+    "gulp-nodemon": "^2.0.6",
+    "gulp-sass": "^2.2.0",
+    "gulp-watch": "^4.3.5"
   }
 }
