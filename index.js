@@ -38,7 +38,7 @@ const exphbs = handlebars.create({
       const difference =  daysDiff(date);
       const suffix = difference > 1 ? 'days' : 'day';
       return difference + " " + suffix;
-    }
+    },
 
     isUrgent: (date) => {
       const difference = daysDiff(date);
