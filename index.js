@@ -11,6 +11,7 @@ const _ = require('lodash');
 const app = express();
 const pledgeFeed = require('./lib/pledgeFeedReader').displayMostUrgentPledges;
 const todayPledgeFeed = require('./lib/pledgeFeedReader').filterPledgesDueToday;
+const moment = require("moment");
 
 if (!secrets || !secrets.accountID || !secrets.accessToken) {
   console.error('Missing parameters, check your secrets.json');
@@ -20,9 +21,11 @@ if (!secrets || !secrets.accountID || !secrets.accessToken) {
 const exphbs = handlebars.create({
   helpers: {
     daysRemaining: (date) => {
-      return 1;
-      // TODO: implement days remaining checker
-      //
+      const start = moment(Date.now());
+      const end   = moment(date);
+      const difference =  end.diff(start, 'days')
+      const suffix = difference > 1 ? 'days' : 'day';
+      return difference + " " + suffix;
     }
   }
 });
