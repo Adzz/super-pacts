@@ -1,3 +1,7 @@
-body {
-  background-color: red;
-}
+@charset "utf-8";
+
+@import
+        "./_variables",
+        "./_mixins",
+        "./_reset",
+        "./_styles";

@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1>Super Pacts</h1>
-    <h2>Make your coding great again</h2>
-    <section role="form" class="form">
-    <form action='/pact' method='POST'>
-      I am going to learn
+    <nav class='fake--navigation'>
+      <li class='left user-icon'>
+        <img src='/images/ptolemy.png' />
+      </li>
+      <li class='left user-name'>
+        ptolemybarnes
+      </li>
+      <li class='right my-pledges-link'>
+        <a href='/home'>my pledges</a>
+      </li>
+    </nav>
+    <section class='splash--container'>
+      <h1 class='title'>super pacts</h1>
+      <h2>make your coding great again</h2>
+      <div class='btn get-started'>get started</div>
+    </section>
+
+    <section role="form" class="form toggle-hide">
+    <form action='/makepledge' method='POST'>
+      <div class='pledge--body'>
+        <span>I will reach</span>
+        <input type="text" name="target-points" placeholder="1000" required>
+        <span>points in</span>
        <select>
         <option value="haskell">Haskell</option>
         <option value="ruby">Ruby</option>
@@ -18,18 +38,15 @@
         <option value="csharp">C#</option>
         <option value="coffeescript">CoffeeScript</option>
       </select>
-       or donate $ <input type="text" name="pledge-amount" placeholder="100" required> to <a href="https://www.tedcruz.org/l/conservatives-are-uniting-2/">TED CRUZ</a>.
-      <span>Continue</span>
-
-      <input type="text" name="codewars-username" placeholder="Enter your codewars username" required>
-      <input type="number" name="target-points" placeholder="Enter your target points" required>
-      <input type="text" name="twitter-username" placeholder="@yourmum" required>
+       or donate £<input type="text" name="pledge-amount" placeholder="100" required> to <a href="https://www.tedcruz.org/l/conservatives-are-uniting-2/">TED CRUZ</a>.
+      <input type="hidden" name="codewars-username" value="ptolemybarnes">
+      <input type="hidden" name="twitter-username" value="@guacamolay">
       <button>Make the Pact</button>
+    </div>
     </form>
   </section>
 
-
-  <section class='pledge-feed'>
+  <section class="pledge-feed">
     {{#each pledges}}
     <div>
       <p>{{codewars_username}} has pledged {{amount}} to {{benefactor}} to be
@@ -37,6 +54,7 @@
     </div>
     {{/each}}
   </section>
+  <script src="/javascript/main.js"></script>
 
   </body>
 </html>

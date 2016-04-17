@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background-color: $navy;
+}
+
+.pledge-feed {
+  position: relative;
+  border-color: $red-cruz;
+  width: 50px;
+  height: 100px;
+}
+
+.fake--navigation {
+  min-height: 4em;
+  background-color: $light-grey;
+
+  li {
+    list-style-type: none;
+  }
+
+  .user-icon {
+    img {
+      margin-top: 0.3em;
+      max-width: 3.5em;
+    }
+  }
+
+  .user-name {
+    margin: .5em;
+    font-size: 2em;
+    color: $red-mondo;
+  }
+
+  .my-pledges-link {
+    background-color: $red-mondo;
+    font-size: 2em;
+    min-width: 6em;
+    padding: 0.4em 0.5em 0.6em 0.5em;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $deep-red;
+    }
+  }
+}
+
+.splash--container {
+  color: white;
+  min-height: 20em;
+  text-align: center;
+
+  h1 {
+    margin-top: 2.5em;
+    font-size: 4em;
+  }
+
+  h2 {
+    margin-top: 0.5em;
+    font-size: 2em;
+  }
+
+  .get-started {
+    font-size: 1.5em;
+    margin-top: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    background-color: $cerulean;
+    padding: 0.7em;
+    border-radius: 10px;
+    max-width: 5em;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.form {
+  .pledge--body {
+    margin: auto;
+    color: white;
+    font-size: 1.5em;
+    width: 75%;
+  }
+
+  input[type="text"] {
+    border-width: 0 0 2px 0;
+    border-color: white;
+    background-color: $navy;
+    font-size: 1.2em;
+    color: white;
+  }
+
+}
+
+.toggle-hide {
+  // display: none;
+}

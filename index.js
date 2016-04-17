@@ -37,7 +37,6 @@ const exphbs = handlebars.create({
     }
   }
 });
-
 app.engine("handlebars", exphbs.engine);
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
@@ -53,7 +52,8 @@ app.get("/", (req, res)=>{
 });
 
 app.get('/home', (req, res) => {
-
+  const pledges = firebaseClient.getPledgesFor("ptolemybarnes", () => {});
+  res.render("home", { pledges });
 });
 
 app.get('/admin', (req, res) => {
