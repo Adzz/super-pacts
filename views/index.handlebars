@@ -26,31 +26,30 @@
     <form action='/makepledge' method='POST'>
       <div class='pledge--body'>
         <span>I will reach</span>
-        <input type="text" name="target-points" placeholder="1000" required>
+        <input type="text" name="target-points" placeholder="1000">
         <span>points in</span>
-       <select>
-        <option value="haskell">Haskell</option>
-        <option value="ruby">Ruby</option>
-        <option value="js">JS</option>
-        <option value="clojure">Clojure</option>
-        <option value="python">Python</option>
-        <option value="java">Java</option>
-        <option value="csharp">C#</option>
-        <option value="coffeescript">CoffeeScript</option>
-      </select>
-       or donate £<input type="text" name="pledge-amount" placeholder="100" required> to <a href="https://www.tedcruz.org/l/conservatives-are-uniting-2/">TED CRUZ</a>.
+        <input type="text" class="target-language" name="target-language" placeholder="clojure">
+       <span>or forfeit £</span>
+       <input type="text" name="pledge-amount" placeholder="500">.
       <input type="hidden" name="codewars-username" value="ptolemybarnes">
       <input type="hidden" name="twitter-username" value="@guacamolay">
-      <button>Make the Pact</button>
+      <div class='btn--container'>
+        <div class='btn make-pledge'>make a pledge</div>
+        <input type="submit" id='form-submit' class='hide' value="Make A Pledge"></input>
+      </div>
     </div>
     </form>
   </section>
 
   <section class="pledge-feed">
     {{#each pledges}}
-    <div>
-      <p>{{codewars_username}} has pledged {{amount}} to {{benefactor}} to be
-        completed in {{daysRemaining due_data}}</p>
+    <div class='pledge--container'>
+      <p><span class='username'>{{codewars_username}}</span>
+        has pledged <span class='amt'>{{amount}}</span> to
+        {{benefactor}} to be
+        completed in
+        <span class='due'>{{daysRemaining due_data}}</span>
+      </p>
     </div>
     {{/each}}
   </section>

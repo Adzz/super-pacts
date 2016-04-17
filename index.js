@@ -63,12 +63,6 @@ app.get('/admin', (req, res) => {
   });
 });
 
-app.post("/pact", (req, res)=>{
-
-});
-
-
-
 app.post('/makepledge', (req, res) => {
   firebaseClient.createPledge(req.body);
   res.redirect('/');
