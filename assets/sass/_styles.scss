@@ -49,6 +49,16 @@ body {
       background-color: $deep-red;
     }
   }
+
+  .total-forfeits {
+    color: $cerulean;
+    margin-top: 1.5em;
+    margin-right: 1em;
+
+    strong {
+      font-weight: 800;
+    }
+  }
 }
 
 .splash--container {

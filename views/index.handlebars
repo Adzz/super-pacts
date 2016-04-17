@@ -5,7 +5,6 @@
     <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1> {{ sumDonated }} </h1>
     <nav class='fake--navigation'>
       <li class='left user-icon'>
         <img src='/images/ptolemy.png' />
@@ -15,6 +14,9 @@
       </li>
       <li class='right my-pledges-link'>
         <a href='/home'>my pledges</a>
+      </li>
+      <li class='right total-forfeits'>
+        To date, <strong>£{{ sumDonated }}</strong> has been forfeited to Ted Cruz
       </li>
     </nav>
     <section class='splash--container'>

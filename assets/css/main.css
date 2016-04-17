@@ -81,6 +81,12 @@ body {
     .fake--navigation .my-pledges-link:hover {
       cursor: pointer;
       background-color: #C60020; }
+  .fake--navigation .total-forfeits {
+    color: #00A4DB;
+    margin-top: 1.5em;
+    margin-right: 1em; }
+    .fake--navigation .total-forfeits strong {
+      font-weight: 800; }
 
 .splash--container {
   color: white;
