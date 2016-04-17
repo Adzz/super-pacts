@@ -32,7 +32,7 @@ app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/assets"));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res)=>{
   firebaseClient.getAllPledges((data) => {
@@ -41,7 +41,8 @@ app.get("/", (req, res)=>{
   });
 });
 
-app.get('/all', (req, res) => {
+app.get('/home', (req, res) => {
+  
 });
 
 app.get('/admin', (req, res) => {
@@ -56,45 +57,6 @@ app.post("/pact", (req, res)=>{
 });
 
 
-app.get("/fails", (req, res) => {
-  const accountID = secrets.accountID;
-  const accessToken = secrets.accessToken;
-
-  const options = {
-    url: "https://api.getmondo.co.uk/transactions?account_id=" + accountID,
-    headers: {
-      "Authorization": "Bearer " + accessToken
-    }
-  };
-  request(options, (err, response, body) => {
-    res.json(JSON.parse(body)); });
-});
-
-app.get('/seed', (req, res) => {
-  console.log(req.query);
-  const username = req.query.username || 'ptolemybarnes';
-  const amount = (req.query.amount && JSON.parse(req.query.amount)) || 10;
-  const codewars_username = req.query.codewars_username || 'ptolemybarnes';
-  const description = req.query.description || 'I will get to 500 points in Clojure';
-  const language = req.query.language || 'clojure';
-  const pledged = false;
-  const score = (req.query.score && JSON.parse(req.query.score)) || 100;
-  const twitter = req.query.twitter || '@guacamolay';
-
-  const pledgeParams = {
-    username,
-    amount,
-    codewars_username,
-    description,
-    language,
-    pledged,
-    score,
-    twitter
-  }
-
-  firebaseClient.createPledge(pledgeParams);
-  res.send('New user created:', pledgeParams);
-});
 
 app.post('/makepledge', (req, res) => {
   firebaseClient.createPledge(req.body);
@@ -103,9 +65,24 @@ app.post('/makepledge', (req, res) => {
 
 app.post('/mondofeed', (req, res) => {
   const notes = req.body.data.notes;
-  firebaseClient.registerPaid(notes);
+  routeMondoHooks(notes);
   res.sendStatus(200);
 });
+
+function routeMondoHooks(notes) {
+  if (!notes) { return console.error('No codewars username was provided'); }
+  const user = _.words(notes)[0];
+
+  if (_.endsWith(notes, 'fulfilled')) {
+    console.log(user + ' has met their goal!');
+    return firebaseClient.setPledgeHonoured(user);
+  } else if (_.endsWith(notes, 'failed')) {
+    console.log(user + ' has failed to meet their pledge');
+  } else {
+    console.log(user + ' has paid their pledge');
+    firebaseClient.registerPaid(user); 
+  }
+}
 
 app.listen(8080, () => {
   console.log('Application started on port 8080');
