@@ -87,36 +87,56 @@ body {
 
 .splash--container {
   color: white;
-  min-height: 20em;
+  min-height: 12em;
   text-align: center; }
   .splash--container h1 {
-    margin-top: 2.5em;
+    margin-top: 2em;
     font-size: 4em; }
   .splash--container h2 {
     margin-top: 0.5em;
     font-size: 2em; }
-  .splash--container .get-started {
-    font-size: 1.5em;
-    margin-top: 1em;
-    margin-right: auto;
-    margin-left: auto;
-    display: block;
-    background-color: #00A4DB;
-    padding: 0.7em;
-    border-radius: 10px;
-    max-width: 5em; }
-    .splash--container .get-started:hover {
-      cursor: pointer; }
+
+.btn {
+  font-size: 1.5em;
+  margin-top: 1em;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  background-color: #00A4DB;
+  padding: 0.7em;
+  border-radius: 10px;
+  max-width: 5em; }
+  .btn:hover {
+    cursor: pointer; }
 
 .form .pledge--body {
+  padding: 1.5em;
+  text-align: center;
   margin: auto;
+  margin-top: -90px;
   color: white;
   font-size: 1.5em;
-  width: 75%; }
+  width: 60%; }
 
 .form input[type="text"] {
   border-width: 0 0 2px 0;
   border-color: white;
   background-color: #14233C;
   font-size: 1.2em;
-  color: white; }
+  color: white;
+  width: 3em;
+  text-align: center;
+  outline: none; }
+  .form input[type="text"].target-language {
+    width: 4em; }
+
+.form .btn--container .make-pledge {
+  font-size: 1em;
+  max-width: 7em;
+  text-align: center; }
+
+.form .btn--container input {
+  visibility: hidden; }
+
+.toggle-hide {
+  display: none; }
