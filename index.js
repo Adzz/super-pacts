@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+console.log('yo');
+
 app.engine("handlebars", handlebars());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
