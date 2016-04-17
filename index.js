@@ -19,6 +19,7 @@ const tweeter = new twitterClient({
   access_token: '721630475148730368-iMskDeFiwt9z6g1DPOUfeGH7ytQxPON',
   access_token_secret: 'ei9ffvAoBMrNSmKwg2lg6v1oUhG4zDH7278po6VxcD9p0'
 });
+const moment = require("moment");
 
 if (!secrets || !secrets.accountID || !secrets.accessToken) {
   console.error('Missing parameters, check your secrets.json');
@@ -28,9 +29,11 @@ if (!secrets || !secrets.accountID || !secrets.accessToken) {
 const exphbs = handlebars.create({
   helpers: {
     daysRemaining: (date) => {
-      return 1;
-      // TODO: implement days remaining checker
-      //
+      const start = moment(Date.now());
+      const end   = moment(date);
+      const difference =  end.diff(start, 'days')
+      const suffix = difference > 1 ? 'days' : 'day';
+      return difference + " " + suffix;
     }
   }
 });
