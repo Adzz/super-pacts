@@ -13,20 +13,22 @@
         ptolemybarnes
       </li>
       <li class='right my-pledges-link'>
-        <a href='/home'>my pledges</a>
+        <a href='/'>all pledges</a>
       </li>
     </nav>
 
     <section class='splash--container'>
-      <h1 class='title'>super pacts</h1>
-      <h2>make your coding great again</h2>
+      <h1 class='title'>My pledges</h1>
     </section>
+
   <section class="pledge-feed">
     {{#each pledges}}
-    <div>
-      <p>
-      {{codewars_username}} has pledged {{amount}} to {{benefactor}} to be
-        completed in {{daysRemaining due_data}} day(s)
+    <div class='pledge--container'>
+      <p><span class='username'>{{codewars_username}}</span>
+        has pledged <span class='amt'>{{amount}}</span> to
+        {{benefactor}} to be
+        completed in
+        <span class='due'>{{daysRemaining due_data}}</span>
       </p>
     </div>
     {{/each}}

@@ -54,12 +54,6 @@ html {
 body {
   background-color: #14233C; }
 
-.pledge-feed {
-  position: relative;
-  border-color: #EC1E43;
-  width: 50px;
-  height: 100px; }
-
 .fake--navigation {
   min-height: 4em;
   background-color: #F8FDFF; }
@@ -140,3 +134,11 @@ body {
 
 .toggle-hide {
   display: none; }
+
+.pledge-feed {
+  padding-top: 4em; }
+  .pledge-feed .pledge--container {
+    padding: 1em;
+    margin: 0.5em auto;
+    width: 75%;
+    background-color: #F8FDFF; }

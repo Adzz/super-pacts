@@ -8,13 +8,6 @@ body {
   background-color: $navy;
 }
 
-.pledge-feed {
-  position: relative;
-  border-color: $red-cruz;
-  width: 50px;
-  height: 100px;
-}
-
 .fake--navigation {
   min-height: 4em;
   background-color: $light-grey;
@@ -129,4 +122,18 @@ body {
 
 .toggle-hide {
   display: none;
+}
+
+//urgent, upcoming, away
+
+.pledge-feed {
+  padding-top: 4em;
+
+  .pledge--container {
+    padding: 1em;
+    margin: 0.5em auto;
+    width: 75%;
+    background-color: $light-grey;
+  }
+
 }

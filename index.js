@@ -27,14 +27,29 @@ if (!secrets || !secrets.accountID || !secrets.accessToken) {
   process.exit();
 }
 
+function daysDiff(date) {
+  const start = moment(Date.now());
+  const end   = moment(date);
+  return end.diff(start, 'days')
+}
+
 const exphbs = handlebars.create({
   helpers: {
     daysRemaining: (date) => {
-      const start = moment(Date.now());
-      const end   = moment(date);
-      const difference =  end.diff(start, 'days')
+      const difference =  daysDiff(date);
       const suffix = difference > 1 ? 'days' : 'day';
       return difference + " " + suffix;
+    },
+
+    isUrgent: (date) => {
+      const difference = daysDiff(date);
+      if (difference <= 3) {
+        return 'urgent'
+      }
+      if (difference <= 15) {
+        return 'upcoming'
+      }
+      return 'away'
     }
   }
 });
@@ -63,7 +78,7 @@ app.get('/home', (req, res) => {
 app.get('/admin', (req, res) => {
   firebaseClient.getAllPledges( data => {
     const pledges = todayPledgeFeed(data);
-    res.render('index', { pledges });
+    res.render('home', { pledges });
   });
 });
 
