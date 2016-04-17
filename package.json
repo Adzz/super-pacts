@@ -11,11 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase": "^2.4.2",
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
-    "request": "^2.71.0",
-    "body-parser": "^1.15.0"
+    "firebase": "^2.4.2",
+    "lodash": "^4.11.1",
+    "request": "^2.71.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

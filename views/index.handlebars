@@ -29,7 +29,12 @@
     </form>
   </section>
   <section class="pledge-feed">
-    
+    {{#each pledges}}
+    <div>
+      <p>{{codewars_username}} has pledged {{amount}} to {{benefactor}} to be
+        completed in {{daysRemaining due_data}} day(s)</p>
+    </div>
+    {{/each}}
   </section>
 
   </body>

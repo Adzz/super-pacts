@@ -6,41 +6,56 @@ const request = require('request')
 const createFirebaseClient = require('./lib/firebaseWrapper');
 const firebaseClient = new createFirebaseClient();
 const bodyParser = require('body-parser');
-
+const secrets = require('./secrets.json');
+const _ = require('lodash');
 const app = express();
+const pledgeFeed = require('./lib/pledgeFeedReader').displayMostUrgentPledges;
+const todayPledgeFeed = require('./lib/pledgeFeedReader').filterPledgesDueToday;
 
-console.log('yo');
+if (!secrets || !secrets.accountID || !secrets.accessToken) {
+  console.error('Missing parameters, check your secrets.json');
+  process.exit();
+}
 
-app.engine("handlebars", handlebars());
+const exphbs = handlebars.create({
+  helpers: {
+    daysRemaining: (date) => {
+      return 1;
+      // TODO: implement days remaining checker
+      //
+    }
+  }
+});
+app.engine("handlebars", exphbs.engine);
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/assets"));
-app.use(bodyParser.urlencoded({extended: false}));
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res)=>{
-  res.render("index");
+  firebaseClient.getAllPledges((data) => {
+    const pledges = pledgeFeed(data);
+    res.render("index", { pledges });
+  });
+});
+
+app.get('/home', (req, res) => {
+
+});
+
+app.get('/admin', (req, res) => {
+  firebaseClient.getAllPledges((data) => {
+    const pledges = todayPledgeFeed(data);
+    res.render('index', { pledges });
+  });
 });
 
 app.post("/pact", (req, res)=>{
 
 });
 
-const accountID = "acc_000097FmTS5YV5JkSUhapF";
-const accessToken= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NjA5ODE5NTUsImlhdCI6MTQ2MDgwOTE1NSwianRpIjoidG9rXzAwMDA5N0Z4MWJpV0N2dGZRYWZwN0IiLCJ1aSI6InVzZXJfMDAwMDk2RmFTbUlhZDFUZTRZSGRGaCIsInYiOiIyIn0.H8aYQZk5Z-KFec6SlJCP0q_8rFvhXYX3zLKldCQi4UI";
 
-const options = {
-  url: "https://api.getmondo.co.uk/transactions?account_id=" + accountID,
-  headers: {
-    "Authorization": "Bearer " + accessToken
-    }
-};
-
-app.get("/fails", (req, res) => {
-  request(options, (err, response, body) => {
-    res.json(JSON.parse(body)); });
-});
 
 app.post('/makepledge', (req, res) => {
   firebaseClient.createPledge(req.body);
@@ -49,8 +64,25 @@ app.post('/makepledge', (req, res) => {
 
 app.post('/mondofeed', (req, res) => {
   const notes = req.body.data.notes;
-  firebaseClient.registerPaid(notes);
+  routeMondoHooks(notes);
   res.sendStatus(200);
 });
 
-app.listen(8080);
+function routeMondoHooks(notes) {
+  if (!notes) { return console.error('No codewars username was provided'); }
+  const user = _.words(notes)[0];
+
+  if (_.endsWith(notes, 'fulfilled')) {
+    console.log(user + ' has met their goal!');
+    return firebaseClient.setPledgeHonoured(user);
+  } else if (_.endsWith(notes, 'failed')) {
+    console.log(user + ' has failed to meet their pledge');
+  } else {
+    console.log(user + ' has paid their pledge');
+    firebaseClient.registerPaid(user);
+  }
+}
+
+app.listen(8080, () => {
+  console.log('Application started on port 8080');
+});
