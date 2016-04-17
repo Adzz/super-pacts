@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class='fake--navigation'>
+      <li class='left user-icon'>
+        <img src='/images/ptolemy.png' />
+      </li>
+      <li class='left user-name'>
+        ptolemybarnes
+      </li>
+      <li class='right my-pledges-link'>
+        <a href='/home'>my pledges</a>
+      </li>
+    </nav>
+
+    <section class='splash--container'>
+      <h1 class='title'>super pacts</h1>
+      <h2>make your coding great again</h2>
+    </section>
+  <section class="pledge-feed">
+    {{#each pledges}}
+    <div>
+      <p>{{codewars_username}} has pledged {{amount}} to {{benefactor}} to be
+        completed in {{daysRemaining due_data}} day(s)</p>
+    </div>
+    {{/each}}
+  </section>
+
+
+  </body>
+</html>
