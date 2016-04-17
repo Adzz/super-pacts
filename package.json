@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "sass": "./node_modules/gulp/bin/gulp.js sass",
+    "start"    : "node index.js",
+    "sass"     : "./node_modules/gulp/bin/gulp.js sass",
+    "sasswatch": "./node_modules/gulp/bin/gulp.js sass:watch",
     "start-dev": "nodemon -d index.js"
   },
   "author": "",
