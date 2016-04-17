@@ -11,6 +11,7 @@ const _ = require('lodash');
 const app = express();
 const pledgeFeed = require('./lib/pledgeFeedReader').displayMostUrgentPledges;
 const todayPledgeFeed = require('./lib/pledgeFeedReader').filterPledgesDueToday;
+const twitterClient = require('./lib/peepPeep')
 
 if (!secrets || !secrets.accountID || !secrets.accessToken) {
   console.error('Missing parameters, check your secrets.json');
@@ -42,7 +43,7 @@ app.get("/", (req, res)=>{
 });
 
 app.get('/home', (req, res) => {
-  
+
 });
 
 app.get('/admin', (req, res) => {
@@ -80,7 +81,7 @@ function routeMondoHooks(notes) {
     console.log(user + ' has failed to meet their pledge');
   } else {
     console.log(user + ' has paid their pledge');
-    firebaseClient.registerPaid(user); 
+    firebaseClient.registerPaid(user);
   }
 }
 
