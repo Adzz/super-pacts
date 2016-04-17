@@ -12,6 +12,7 @@ const app = express();
 const pledgeFeed = require('./lib/pledgeFeedReader').displayMostUrgentPledges;
 const todayPledgeFeed = require('./lib/pledgeFeedReader').filterPledgesDueToday;
 const twitterClient = require('./lib/peepPeep');
+const totalDonated  = require("./lib/totalDonated.js");
 
 const tweeter = new twitterClient({
   consumer_key: 'TFPseWmz85EDXnmGcEYxZ7gFE',
@@ -61,8 +62,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res)=>{
   firebaseClient.getAllPledges((data) => {
-    const pledges = pledgeFeed(data);
-    res.render("index", { pledges });
+    const flattenedPledges = _.flatten(_.map(data, _.values));
+    const pledges    = pledgeFeed(data);
+    const sumDonated = totalDonated(flattenedPledges);
+    res.render("index", { pledges, sumDonated });
   });
 });
 
