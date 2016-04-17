@@ -52,14 +52,16 @@ app.get("/", (req, res)=>{
 });
 
 app.get('/home', (req, res) => {
-  const pledges = firebaseClient.getPledgesFor("ptolemybarnes", () => {});
-  res.render("home", { pledges });
+  firebaseClient.getPledgesFor("ptolemybarnes", (data) => {
+    const pledges = pledgeFeed(data);
+    res.render("home", { pledges });
+  });
 });
 
 app.get('/admin', (req, res) => {
   firebaseClient.getAllPledges( data => {
     const pledges = todayPledgeFeed(data);
-    res.render('index', { pledges });
+    res.render('home', { pledges });
   });
 });
 
