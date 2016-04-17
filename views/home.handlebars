@@ -21,18 +21,18 @@
       <h1 class='title'>My pledges</h1>
     </section>
 
-    <section class="pledge-feed">
-      {{#each pledges}}
-      <div class='pledge--container'>
-        <p><span class='username'>{{codewars_username}}</span>
-          has pledged <span class='amt'>{{amount}}</span> to
-          {{benefactor}} to be
-          completed in
-          <span class='due'>{{daysRemaining due_data}}</span>
-        </p>
-      </div>
-      {{/each}}
-    </section>
+  <section class="pledge-feed">
+    {{#each pledges}}
+    <div class='pledge--container'>
+      <p><span class='username'>{{codewars_username}}</span>
+        has pledged <span class='amt'>{{amount}}</span> to
+        {{benefactor}} to be
+        completed in
+        <span class='due'>{{daysRemaining due_data}}</span>
+      </p>
+    </div>
+    {{/each}}
+  </section>
 
 
   </body>

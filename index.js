@@ -52,8 +52,7 @@ app.get("/", (req, res)=>{
 });
 
 app.get('/home', (req, res) => {
-  firebaseClient.getPledgesFor("ptolemybarnes", (data) => {
-    const pledges = pledgeFeed(data);
+  firebaseClient.getPledgesFor("ptolemybarnes", (pledges) => {
     res.render("home", { pledges });
   });
 });

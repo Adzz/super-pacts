@@ -26,13 +26,13 @@
     <form action='/makepledge' method='POST'>
       <div class='pledge--body'>
         <span>I will reach</span>
-        <input type="text" name="target-points" placeholder="1000">
+        <input type="text" name="score" placeholder="1000">
         <span>points in</span>
-        <input type="text" class="target-language" name="target-language" placeholder="clojure">
+        <input type="text" class="language" name="target-language" placeholder="clojure">
        <span>or forfeit £</span>
-       <input type="text" name="pledge-amount" placeholder="500">.
-      <input type="hidden" name="codewars-username" value="ptolemybarnes">
-      <input type="hidden" name="twitter-username" value="@guacamolay">
+       <input type="text" name="amount" placeholder="500">.
+      <input type="hidden" name="codewars_username" value="ptolemybarnes">
+      <input type="hidden" name="twitter" value="@guacamolay">
       <div class='btn--container'>
         <div class='btn make-pledge'>make a pledge</div>
         <input type="submit" id='form-submit' class='hide' value="Make A Pledge"></input>
