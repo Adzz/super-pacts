@@ -44,15 +44,27 @@
   <section class="pledge-feed">
     {{#each pledges}}
     <div class='pledge--container'>
-      <p><span class='username'>{{codewars_username}}</span>
-        has pledged <span class='amt'>{{amount}}</span> to
-        {{benefactor}} to be
-        completed in
-        <span class='due'>{{daysRemaining due_data}}</span>
-      </p>
+
+      <span class='pledge--duedate status--{{isUrgent due_data}}'>
+        <div class='due-in'>DUE IN</div>
+        <div class='number'>
+          {{daysRemaining due_data}}
+        </div>
+      </span>
+
+      <span class='pledge--content status--{{isUrgent due_data}}'>
+        <p><span class='username'>{{codewars_username}}</span>
+          has pledged <span class='amt'>£{{amount}}</span> to learn
+          <span class='language'>{{language}}</span> or forfeits it to
+          <span class='benefactor'>the Ted Cruz for America Super PAC</span>
+        </p>
+      </span>
+
+      <span class='spacer'></span>
     </div>
     {{/each}}
   </section>
+
   <script src="/javascript/main.js"></script>
 
   </body>

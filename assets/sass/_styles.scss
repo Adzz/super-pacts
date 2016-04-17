@@ -5,7 +5,10 @@ html {
 }
 
 body {
-  background-color: $navy;
+  background-image: url('/images/rally.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
 .fake--navigation {
@@ -92,17 +95,21 @@ body {
     width: 60%;
   }
 
+  ::-webkit-input-placeholder {
+   color: white;
+  }
+
   input[type="text"] {
     border-width: 0 0 2px 0;
     border-color: white;
-    background-color: $navy;
+    background-color: $red-mondo;
     font-size: 1.2em;
     color: white;
     width: 3em;
     text-align: center;
     outline: none;
 
-    &.target-language {
+    &.language {
       width: 4em;
     }
   }
@@ -130,10 +137,58 @@ body {
   padding-top: 4em;
 
   .pledge--container {
-    padding: 1em;
+    width: 70%;
     margin: 0.5em auto;
-    width: 75%;
-    background-color: $light-grey;
+
+    .pledge--duedate {
+      color: white;
+      display: block;
+      float: left;
+      text-align: center;
+      line-height: 1.2em;
+      padding: 0.5em;
+      height: 4em;
+
+      .due-in {
+        margin-top: 10px;
+        font-size: 0.5em;
+      }
+
+      .number {
+        font-size: 1em;
+        font-weight: 800;
+      }
+
+      &.status--urgent {
+        background-color: $red-mondo;
+      }
+
+      &.status--upcoming {
+        background-color: $mondo-beige;
+      }
+
+      &.status--away {
+        background-color: $green-mondo;
+      }
+    }
+
+    .pledge--content {
+      display: block;
+      float: left;
+      padding: 2em;
+      min-width: 44em;
+      background-color: $light-grey;
+
+      .username, .benefactor {
+        font-weight: 800;
+      }
+    }
+
+    .spacer {
+      clear: both;
+      display: block;
+      height: 2em;
+    }
   }
 
 }

@@ -52,7 +52,10 @@ html {
   font-family: 'Lato', sans-serif; }
 
 body {
-  background-color: #14233C; }
+  background-image: url("/images/rally.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%; }
 
 .fake--navigation {
   min-height: 4em;
@@ -112,16 +115,19 @@ body {
   font-size: 1.5em;
   width: 60%; }
 
+.form ::-webkit-input-placeholder {
+  color: white; }
+
 .form input[type="text"] {
   border-width: 0 0 2px 0;
   border-color: white;
-  background-color: #14233C;
+  background-color: #E64B5F;
   font-size: 1.2em;
   color: white;
   width: 3em;
   text-align: center;
   outline: none; }
-  .form input[type="text"].target-language {
+  .form input[type="text"].language {
     width: 4em; }
 
 .form .btn--container .make-pledge {
@@ -138,7 +144,37 @@ body {
 .pledge-feed {
   padding-top: 4em; }
   .pledge-feed .pledge--container {
-    padding: 1em;
-    margin: 0.5em auto;
-    width: 75%;
-    background-color: #F8FDFF; }
+    width: 70%;
+    margin: 0.5em auto; }
+    .pledge-feed .pledge--container .pledge--duedate {
+      color: white;
+      display: block;
+      float: left;
+      text-align: center;
+      line-height: 1.2em;
+      padding: 0.5em;
+      height: 4em; }
+      .pledge-feed .pledge--container .pledge--duedate .due-in {
+        margin-top: 10px;
+        font-size: 0.5em; }
+      .pledge-feed .pledge--container .pledge--duedate .number {
+        font-size: 1em;
+        font-weight: 800; }
+      .pledge-feed .pledge--container .pledge--duedate.status--urgent {
+        background-color: #E64B5F; }
+      .pledge-feed .pledge--container .pledge--duedate.status--upcoming {
+        background-color: RGBA(255, 195, 0, 1); }
+      .pledge-feed .pledge--container .pledge--duedate.status--away {
+        background-color: RGBA(0, 131, 19, 1); }
+    .pledge-feed .pledge--container .pledge--content {
+      display: block;
+      float: left;
+      padding: 2em;
+      min-width: 44em;
+      background-color: #F8FDFF; }
+      .pledge-feed .pledge--container .pledge--content .username, .pledge-feed .pledge--container .pledge--content .benefactor {
+        font-weight: 800; }
+    .pledge-feed .pledge--container .spacer {
+      clear: both;
+      display: block;
+      height: 2em; }
