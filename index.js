@@ -9,7 +9,8 @@ const bodyParser = require('body-parser');
 const secrets = require('./secrets.json');
 const _ = require('lodash');
 const app = express();
-const pledgeFeed = require('./lib/pledgeFeedReader');
+const pledgeFeed = require('./lib/pledgeFeedReader').displayMostUrgentPledges;
+const todayPledgeFeed = require('./lib/pledgeFeedReader').filterPledgesDueToday;
 
 if (!secrets || !secrets.accountID || !secrets.accessToken) {
   console.error('Missing parameters, check your secrets.json');
@@ -18,7 +19,7 @@ if (!secrets || !secrets.accountID || !secrets.accessToken) {
 
 const exphbs = handlebars.create({
   helpers: {
-    daysRemaining: (date) => { 
+    daysRemaining: (date) => {
       return 1;
       // TODO: implement days remaining checker
       //
@@ -44,6 +45,12 @@ app.get('/home', (req, res) => {
   
 });
 
+app.get('/admin', (req, res) => {
+  firebaseClient.getAllPledges((data) => {
+    const pledges = todayPledgeFeed(data);
+    res.render('index', { pledges });
+  });
+});
 
 app.post("/pact", (req, res)=>{
 
